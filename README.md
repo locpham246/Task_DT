@@ -99,13 +99,121 @@ Hệ thống sử dụng mô hình **RBAC (Role-Based Access Control)** với 3 
 - **Google Auth Library:** Xác thực Google OAuth
 - **Multer 1.4.5:** Upload file
 
-### Infrastructure & Deployment
+### Deployment
 - **Docker & Docker Compose:** Containerization
 - **Docker Swarm:** Orchestration (Production)
 - **Proxmox:** Virtualization platform
 - **Nginx & Nginx Proxy Manager:** Web server, Reverse proxy, SSL (Let's Encrypt)
 - **Portainer:** Quản lý Docker Swarm
 
+**English**
+# Internal Task Management System - Duc Tri School
+
+## Objective
+Build an internal task management system to help Duc Tri school staff:
+- **Create, approve, and manage** internal tasks.
+- **Track the progress** of tasks and employee activities.
+- **Manage users** and role-based permissions.
+
+---
+
+## Target Users
+The system utilizes an **RBAC (Role-Based Access Control)** model with 3 role levels:
+
+### 1. **Super Admin:**
+- View all tasks within the system.
+- Create tasks and assign them to any user.
+- Approve, reject, and change the status of any task.
+- **User Management** (User CRUD) and **Email Whitelist** management.
+- View system-wide **Audit Logs**.
+- Receive notifications when assigned as a supervisor.
+- Manage roles and maintain a backup account (system fallback account).
+
+### 2. **Admin:**
+- Create task requests and await approval from the Super Admin.
+- View related tasks (assigned, coordinated, supervised).
+- Create tasks and assign them to Members.
+- **Change the status** of tasks they created or are responsible for.
+- View the user list and user activities.
+- *Note: Cannot approve tasks, manage the Email Whitelist, or manage user roles.*
+
+### 3. **Member:**
+- Create task requests and await approval from the Super Admin.
+- Select a supervisor (Admin / Super Admin) and coordinator (other Members).
+- **Update the status** of tasks they are responsible for.
+- *Note: Cannot change task assignees, approve tasks, view tasks outside their scope, or manage users.*
+
+---
+
+## Route Protection (Backend Middleware)
+- `protect`: Requires authentication (applies to all users).
+- `isAdmin`: Accessible only by **Admin** and **Super Admin**.
+- `isSuperAdmin`: Accessible only by **Super Admin**.
+
+---
+
+## Scope & Key Features
+
+### Authentication & Authorization
+- **Google OAuth Login:** Strictly limited to internal school emails.
+- **Email Whitelist:** Super Admin manages the list of authorized emails.
+- **Auto-logout:** Automatically logs users out after 15 minutes of inactivity.
+- **Session Management:** Tracks IP address, device, and login time.
+
+### Task Management
+- **Create & Assign:** Members/Admins create requests; Super Admin approves and can assign tasks to multiple employees.
+- **Workflow:** Pending Approval -> Approved -> Public -> In Progress -> Completed.
+- **Priority Levels:** Low, Medium, High.
+- **Deadlines:** Set time limits for task completion.
+- **Attachments:** Store links to related documents (JSONB).
+- **Filter & Search:** Filter by status, priority, and assignee.
+
+### Shared Documents
+- **Upload & Share:** Share document links with specific users.
+- **Document Management:** View, edit, and delete shared documents.
+
+### User Management (Super Admin Only)
+- **User CRUD:** View detailed profiles, change roles, and delete accounts.
+- **Activity Tracking:** Monitor IP, device, timestamps, and Online/Offline status.
+
+### Dashboard & Statistics
+- **Role-based Display:** Members (personal tasks only), Admins (all tasks), Super Admins (all tasks + users).
+- **Detailed Statistics:** Total tasks, pending approval, in progress, completed, and overdue.
+- **Notification System:** Real-time notifications integrated directly into the UI.
+- **Audit Logs:** Record every action taken within the system.
+
+### User Interface (UI/UX)
+- **Dark/Light Mode:** Seamless theme switching.
+- **Responsive Design:** Fully optimized for both Mobile and Desktop.
+- **Profile Management:** Upload Avatars (stored on the server) and update personal information via a Settings Modal.
+
+---
+
+## Tech Stack
+
+### Frontend
+- **React 19.2.0:** UI Framework
+- **Vite 7.2.4:** Build tool & Dev server
+- **React Router DOM 7.12.0:** Routing
+- **Axios 1.13.2:** API Client
+- **@react-oauth/google:** Google Authentication integration
+- **CSS3:** Styling with CSS variables for theming
+
+### Backend
+- **Node.js 18:** Runtime environment
+- **Express.js 5.2.1:** Web framework
+- **PostgreSQL 15:** Database (Client: pg 8.16.3)
+- **JWT:** Token-based authentication
+- **Google Auth Library:** Google OAuth verification
+- **Multer 1.4.5:** File uploading
+
+### Deployment
+- **Docker & Docker Compose:** Containerization
+- **Docker Swarm:** Orchestration (Production)
+- **Proxmox:** Virtualization platform
+- **Nginx & Nginx Proxy Manager:** Web server, Reverse proxy, SSL (Let's Encrypt)
+- **Portainer:** Docker Swarm management
+- 
 **Login Page:**
 <img width="1917" height="957" alt="image1" src="https://github.com/user-attachments/assets/c11aa002-a929-4524-95eb-ec1614bfb7de" />
 
