@@ -1,3 +1,4 @@
+**Vietnamese**
 # Hệ Thống Quản Lý Công Việc Nội Bộ - Đức Trí School
 
 ## Mục Tiêu
@@ -46,12 +47,12 @@ Hệ thống sử dụng mô hình **RBAC (Role-Based Access Control)** với 3 
 ## Phạm Vi & Chức Năng Chính (Features)
 
 ### Xác Thực & Phân Quyền
-- **Đăng nhập bằng Google OAuth:** Chỉ email `@ductridn.edu.vn` mới được phép đăng nhập.
+- **Đăng nhập bằng Google OAuth:** Chỉ email nội bộ trường mới được phép đăng nhập.
 - **Email Whitelist:** Super Admin quản lý danh sách email hợp lệ.
 - **Tự động đăng xuất:** Sau 15 phút không hoạt động.
 - **Quản lý phiên làm việc:** Theo dõi IP, thiết bị, thời gian đăng nhập.
 
-### 📋 Quản Lý Công Việc (Task Management)
+### Quản Lý Công Việc (Task Management)
 - **Tạo & Giao việc:** Member/Admin tạo request, Super Admin phê duyệt và có thể gán cho nhiều nhân viên.
 - **Workflow:** Chờ phê duyệt -> Đã phê duyệt -> Công khai -> Đang thực hiện -> Hoàn thành.
 - **Mức độ ưu tiên:** Low, Medium, High.
@@ -63,7 +64,7 @@ Hệ thống sử dụng mô hình **RBAC (Role-Based Access Control)** với 3 
 - **Upload & Chia sẻ:** Chia sẻ link tài liệu cho đối tượng cụ thể.
 - **Quản lý tài liệu:** Xem, sửa, xóa tài liệu đã chia sẻ.
 
-### 👥 Quản Lý Người Dùng (Super Admin Only)
+### Quản Lý Người Dùng (Super Admin Only)
 - **CRUD Người dùng:** Xem chi tiết, thay đổi vai trò, xóa tài khoản.
 - **Theo dõi hoạt động:** Xem IP, thiết bị, thời gian, và trạng thái Online/Offline.
 
@@ -93,7 +94,7 @@ Hệ thống sử dụng mô hình **RBAC (Role-Based Access Control)** với 3 
 ### Backend
 - **Node.js 18:** Runtime environment
 - **Express.js 5.2.1:** Web framework
-- **PostgreSQL 15:** Database (Client: `pg 8.16.3`)
+- **PostgreSQL 15:** Database (Client: pg 8.16.3)
 - **JWT:** Xác thực token
 - **Google Auth Library:** Xác thực Google OAuth
 - **Multer 1.4.5:** Upload file
@@ -104,3 +105,15 @@ Hệ thống sử dụng mô hình **RBAC (Role-Based Access Control)** với 3 
 - **Proxmox:** Virtualization platform
 - **Nginx & Nginx Proxy Manager:** Web server, Reverse proxy, SSL (Let's Encrypt)
 - **Portainer:** Quản lý Docker Swarm
+
+**Login Page:**
+<img width="1917" height="957" alt="image1" src="https://github.com/user-attachments/assets/c11aa002-a929-4524-95eb-ec1614bfb7de" />
+
+**Admin(Backup Super Admin):**
+<img width="1916" height="958" alt="image3" src="https://github.com/user-attachments/assets/3406e06f-fcac-403f-9df0-6c1a3f8ebe6a" />
+
+**Home Page:**
+<img width="1894" height="926" alt="image5" src="https://github.com/user-attachments/assets/83ecaade-f4c9-41ba-b252-8a65dcae20c6" />
+
+**Audit Logs:**
+<img width="1916" height="956" alt="image8" src="https://github.com/user-attachments/assets/76cb8985-f9c9-42d2-96c0-9a93ac843be3" />
